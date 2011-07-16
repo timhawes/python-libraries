@@ -10,8 +10,7 @@ import re
 
 def ldap_config_parser():
     filenames = ["/etc/openldap/ldap.conf",
-                 "/etc/ldap/ldap.conf",
-		 "/etc/ldap.conf"]
+                 "/etc/ldap/ldap.conf"]
     try:
         home = pwd.getpwuid(os.getuid())[5]
         filenames.append(os.path.join(home, "ldaprc"))
