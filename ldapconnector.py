@@ -39,6 +39,15 @@ def SmartLDAPObject(debug=False):
 	kwargs["who"] = config["binddn"]
     if config.has_key("bindpw"):
 	kwargs["cred"] = config["bindpw"]
+    if config.has_key("tls_cacert"):
+        kwargs["tls_cacertfile"] = config["tls_cacert"]
+    if config.has_key("tls_cacertdir"):
+        kwargs["tls_cacertdir"] = config["tls_cacertdir"]
+    if config.has_key("tls_reqcert"):
+        if config["tls_reqcert"].lower() in ["allow", "try"]:
+            kwargs["start_tls"] = 1
+        elif config["tls_reqcert"].lower() in ["demand", "hard"]:
+            kwargs["start_tls"] = 2
     if config.has_key("uri"):
 	if debug:
 	    print "Creating SmartLDAPObject with parameters: %r, %r" % (config["uri"], kwargs)
@@ -46,5 +55,5 @@ def SmartLDAPObject(debug=False):
 
 if __name__ == "__main__":
     ldap_object = SmartLDAPObject(debug=True)
-    print ldap_object.whoami_s()
-
+    print "object:", ldap_object
+    print "whoami:", ldap_object.whoami_s()
