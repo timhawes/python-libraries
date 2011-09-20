@@ -1,4 +1,7 @@
 #!/usr/bin/python
+#
+# Tim Hawes <me@timhawes.com>
+# 20th September 2011
 
 import logging
 import logging.handlers
